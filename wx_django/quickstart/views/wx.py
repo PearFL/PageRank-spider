@@ -75,7 +75,7 @@ def pagerank(request):
                 mydict["in"] = data[2]
                 mydict["out"] = data[3]
                 mydict["pg"] = data[4]
-                mydict["rank"] = sim * 700 + data[4]
+                mydict["rank"] = sim * 2500 + data[4]
                 result.append(mydict)
 
         result = sorted(result, key=lambda k: (k.get('rank', 0)), reverse=True)
