@@ -5,5 +5,5 @@ urlpatterns = [
     path('hello', wx.helloworld),
     path('weather', wx.weather),
     path('menu', menu.get_menu),
-
+    path('pagerank', wx.pagerank),
 ]

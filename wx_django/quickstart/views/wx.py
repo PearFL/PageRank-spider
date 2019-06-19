@@ -13,9 +13,10 @@ def helloworld(request):
     print('request cookies:', request.COOKIES)
     print('request QueryDict: ', request.GET)
     # return HttpResponse(content='Hello Django Response', status=201)
+    search = request.GET.get('search')
     m = [{
         "url": "http://www.hfuu.edu.cn/",
-        "title": "合肥学院",
+        "title": search,
         "in": 35,
         "out": 27,
         "pg": 4.9,
@@ -49,3 +50,12 @@ def weather(request):
             result['city'] = city
             response_data.append(result)
         return JsonResponse(data=response_data, safe=False, status=200)
+
+
+def pagerank(request):
+    if request.method == 'GET':
+        search = request.GET.get('search')
+
+        response = utils.response.wrap_json_response(data=search,
+                                                     code=utils.response.ReturnCode.SUCCESS)
+        return JsonResponse(data=response, safe=False, status=200)
