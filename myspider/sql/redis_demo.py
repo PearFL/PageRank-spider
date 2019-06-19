@@ -3,12 +3,17 @@ import redis
 
 class Base0(object):
     def __init__(self):
-        self.r = redis.Redis(host='*', port=6379, db=0)
+        self.r = redis.Redis(host='119.28.18.242', port=6379, password='pearfl', db=0)
 
 
 class Base1(object):
     def __init__(self):
-        self.r = redis.Redis(host='*', port=6379, db=1)
+        self.r = redis.Redis(host='119.28.18.242', port=6379, password='pearfl', db=1)
+
+
+class Base2(object):
+    def __init__(self):
+        self.r = redis.Redis(host='119.28.18.242', port=6379, password='pearfl', db=2)
 
 
 class TestString(Base0):
@@ -67,6 +72,36 @@ class TestSet(Base1):
         rest = self.r.smembers(key)
         return rest
 
+
+class TestSet2(Base2):
+    """
+    sadd/srem -- 添加/删除元素
+    sismember -- 判断是否为set的一个元素
+    smembers -- 返回该集合的所有成员
+    sdiff -- 返回一个集合与其它集合的差异
+    sinter -- 返回几个集合的交集
+    sunion -- 返回几个集合的并集
+    """
+
+    def test_sadd(self, key, val):
+        ''' sadd -- 添加元素,val可以是dict '''
+        rest = self.r.sadd(key, val)
+        return rest
+
+    def test_srem(self, key, val):
+        ''' srem -- 删除元素 '''
+        rest = self.r.srem(key, val)
+        return rest
+
+    def test_sismember(self, key):
+        ''' sismember -- 判断是否为set的一个元素 '''
+        rest = self.r.sismbers(key)
+        return rest
+
+    def test_smembers(self, key):
+        ''' smembers -- 返回该集合的所有成员 '''
+        rest = self.r.smembers(key)
+        return rest
 
 # def main():
 #     string_obj = TestString()

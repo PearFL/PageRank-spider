@@ -6,6 +6,8 @@ from django.http import HttpResponse, JsonResponse, FileResponse
 from JuheApi import weatherApi
 import json
 import utils.response
+from quickstart.sql.mysql_demo import *
+import Levenshtein
 
 def helloworld(request):
     print('request method:', request.method)
@@ -56,6 +58,29 @@ def pagerank(request):
     if request.method == 'GET':
         search = request.GET.get('search')
 
-        response = utils.response.wrap_json_response(data=search,
+        t = ViewMysql()
+        datas = t.test_select_all()
+        datas = list(datas)
+
+        result = []
+
+        for data in datas:
+            data = list(data)
+            sim = Levenshtein.jaro_winkler(data[1], search)
+
+            if sim:
+                mydict = {}
+                mydict["url"] = data[0]
+                mydict["title"] = data[1]
+                mydict["in"] = data[2]
+                mydict["out"] = data[3]
+                mydict["pg"] = data[4]
+                mydict["rank"] = sim * 700 + data[4]
+                result.append(mydict)
+
+        result = sorted(result, key=lambda k: (k.get('rank', 0)), reverse=True)
+        result[0:9]
+
+        response = utils.response.wrap_json_response(data=result,
                                                      code=utils.response.ReturnCode.SUCCESS)
         return JsonResponse(data=response, safe=False, status=200)
