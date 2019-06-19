@@ -4,12 +4,12 @@ import pymysql
 class Base(object):
     def __init__(self):
         self.conn = pymysql.connect(
-            host='39.108.128.88',
-            port=3306,
-            database='spiders',
-            user='root',
-            passwd='1q2w3e4R!',
-            charset='utf8',
+            host='*',
+            port=,
+            database='*',
+            user='*',
+            passwd='*!',
+            charset='*',
         )
 
 

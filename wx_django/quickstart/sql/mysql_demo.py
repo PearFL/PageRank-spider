@@ -6,12 +6,12 @@ import Levenshtein
 class Base(object):
     def __init__(self):
         self.conn = pymysql.connect(
-            host='39.108.128.88',
+            host='*',
             port=3306,
-            database='spiders',
-            user='root',
-            passwd='1q2w3e4R!',
-            charset='utf8',
+            database='*',
+            user='*',
+            passwd='*',
+            charset='*',
         )
 
 

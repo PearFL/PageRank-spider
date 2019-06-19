@@ -3,17 +3,17 @@ import redis
 
 class Base0(object):
     def __init__(self):
-        self.r = redis.Redis(host='119.28.18.242', port=6379, password='pearfl', db=0)
+        self.r = redis.Redis(host='*', port=6379, password='*', db=0)
 
 
 class Base1(object):
     def __init__(self):
-        self.r = redis.Redis(host='119.28.18.242', port=6379, password='pearfl', db=1)
+        self.r = redis.Redis(host='*', port=6379, password='*', db=1)
 
 
 class Base2(object):
     def __init__(self):
-        self.r = redis.Redis(host='119.28.18.242', port=6379, password='pearfl', db=2)
+        self.r = redis.Redis(host='*', port=6379, password='*', db=2)
 
 
 class TestString(Base0):
