@@ -72,7 +72,7 @@ def main():
             result.append(mydict)
 
     result = sorted(result, key=lambda k: (k.get('rank', 0)), reverse=True)
-    result = result[0:9]
+    result = result[0:6]
     return result
 
 
