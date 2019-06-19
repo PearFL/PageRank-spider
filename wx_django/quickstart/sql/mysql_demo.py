@@ -52,7 +52,7 @@ def main():
     datas = t.test_select_all()
     datas = list(datas)
 
-    search = '合肥'
+    search = '生物系'
 
     result = []
 
@@ -67,8 +67,8 @@ def main():
             mydict["in"] = data[2]
             mydict["out"] = data[3]
             mydict["pg"] = data[4]
-            mydict["rank"] = sim * 700 + data[4]
-            # print(mydict["rank"])
+            mydict["rank"] = sim * 5000 + data[4]
+            print(mydict["rank"])
             result.append(mydict)
 
     result = sorted(result, key=lambda k: (k.get('rank', 0)), reverse=True)
